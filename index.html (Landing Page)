@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>songwaCTF - Platform CTF Gratis</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">songwaCTF</div>
+            <div class="nav-links">
+                <a href="#home">Beranda</a>
+                <a href="#about">Tentang</a>
+                <a href="#features">Fitur</a>
+                <a href="pages/scoreboard.html">Scoreboard</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="register.html" class="btn btn-primary">Daftar</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Platform CTF Gratis untuk Pembelajaran</h1>
+            <p>Tingkatkan skill keamanan siber Anda dengan tantangan CTF yang menarik</p>
+            <a href="register.html" class="btn btn-primary">Mulai Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Sections: About, Features, etc -->
+    
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
