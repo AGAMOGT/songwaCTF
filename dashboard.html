@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - songwaCTF</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+    <div id="matrix-bg"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">songwaCTF</div>
+                <div class="nav-links">
+                    <a href="challenges/index.html">[MISSIONS]</a>
+                    <a href="#scoreboard">[SCOREBOARD]</a>
+                    <a href="#profile">[PROFILE]</a>
+                </div>
+                <div class="auth-buttons">
+                    <span id="user-welcome" style="color: var(--text-primary);"></span>
+                    <button class="btn btn-outline" onclick="logout()">TERMINATE SESSION</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">OPERATIONS DASHBOARD</h2>
+            <div class="dashboard">
+                <div class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" onclick="showDashboardTab('overview')">OVERVIEW</a></li>
+                        <li><a href="#" onclick="showDashboardTab('challenges')">ACTIVE MISSIONS</a></li>
+                        <li><a href="#" onclick="showDashboardTab('scoreboard')">OPERATORS RANKING</a></li>
+                        <li><a href="#" onclick="showDashboardTab('profile')">OPERATOR PROFILE</a></li>
+                    </ul>
+                </div>
+                <div class="main-content">
+                    <!-- Overview Tab -->
+                    <div id="overview-tab">
+                        <h3>MISSION OVERVIEW</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value" id="completed-count">0/15</div>
+                                <div class="stat-label">MISSIONS COMPLETED</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="total-points">0</div>
+                                <div class="stat-label">INTEL POINTS</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="current-rank">#-</div>
+                                <div class="stat-label">CURRENT RANK</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="success-rate">0%</div>
+                                <div class="stat-label">SUCCESS RATE</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-activity">
+                            <h4>RECENT ACTIVITY</h4>
+                            <div id="activity-list">
+                                <!-- Activity will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Challenges Tab -->
+                    <div id="challenges-tab" style="display: none;">
+                        <h3>ACTIVE MISSIONS</h3>
+                        <div class="challenge-categories">
+                            <div class="category-card" onclick="window.location.href='challenges/web/'">
+                                <h4>WEB EXPLOITATION</h4>
+                                <p>Exploit web vulnerabilities and applications</p>
+                                <span class="category-stats">3/5 Completed</span>
+                            </div>
+                            <div class="category-card" onclick="window.location.href='challenges/crypto/'">
+                                <h4>CRYPTOGRAPHY</h4>
+                                <p>Break ciphers and decrypt messages</p>
+                                <span class="category-stats">2/5 Completed</span>
+                            </div>
+                            <div class="category-card" onclick="window.location.href='challenges/forensics/'">
+                                <h4>FORENSICS</h4>
+                                <p>Analyze digital evidence and artifacts</p>
+                                <span class="category-stats">1/5 Completed</span>
+                            </div>
+                            <div class="category-card" onclick="window.location.href='challenges/reversing/'">
+                                <h4>REVERSE ENGINEERING</h4>
+                                <p>Decompile and analyze binaries</p>
+                                <span class="category-stats">0/5 Completed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scoreboard Tab -->
+                    <div id="scoreboard-tab" style="display: none;">
+                        <h3>OPERATORS RANKING</h3>
+                        <table class="scoreboard-table">
+                            <thead>
+                                <tr>
+                                    <th>RANK</th>
+                                    <th>OPERATOR</th>
+                                    <th>POINTS</th>
+                                    <th>COMPLETED</th>
+                                    <th>SUCCESS RATE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scoreboard-body">
+                                <!-- Scoreboard will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Profile Tab -->
+                    <div id="profile-tab" style="display: none;">
+                        <h3>OPERATOR PROFILE</h3>
+                        <form id="profile-form">
+                            <div class="form-group">
+                                <label for="profile-username">OPERATOR TAG</label>
+                                <input type="text" id="profile-username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">ENCRYPTION KEY</label>
+                                <input type="email" id="profile-email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-password">NEW ACCESS CODE</label>
+                                <input type="password" id="profile-password" class="form-control" placeholder="LEAVE BLANK TO KEEP CURRENT">
+                            </div>
+                            <button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
