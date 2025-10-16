@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>songwaCTF - Platform CTF Gratis</title>
+    <title>songwaCTF - Elite Hacking Platform</title>
     <style>
         :root {
-            --primary: #2d3748;
-            --secondary: #4a5568;
-            --accent: #3182ce;
-            --light: #f7fafc;
-            --dark: #1a202c;
-            --success: #48bb78;
-            --warning: #ed8936;
-            --danger: #f56565;
+            --primary: #0a0a0a;
+            --secondary: #111111;
+            --accent: #00ff41;
+            --accent-glow: rgba(0, 255, 65, 0.3);
+            --accent-dark: #00cc33;
+            --text-primary: #00ff41;
+            --text-secondary: #cccccc;
+            --text-muted: #666666;
+            --danger: #ff0033;
+            --warning: #ffaa00;
+            --success: #00ff41;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', 'Consolas', monospace;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--primary);
+            color: var(--text-secondary);
             line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 65, 0.03) 0%, transparent 20%);
+        }
+        
+        /* Matrix Rain Background Effect */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
         }
         
         .container {
@@ -36,11 +54,15 @@
             padding: 20px;
         }
         
+        /* Header & Navigation */
         header {
-            background-color: var(--primary);
-            color: white;
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--accent);
             padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
         
         nav {
@@ -50,27 +72,49 @@
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--accent-glow);
+            letter-spacing: 2px;
         }
         
-        .logo span {
+        .logo::before {
+            content: ">> ";
             color: var(--accent);
         }
         
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
         }
         
         .nav-links a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
         }
         
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .auth-buttons {
@@ -79,57 +123,132 @@
         }
         
         .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 0;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: bold;
             transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
         }
         
         .btn-primary {
-            background-color: var(--accent);
-            color: white;
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background-color: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
         
         .btn-outline {
             background-color: transparent;
-            border: 1px solid white;
-            color: white;
+            color: var(--text-secondary);
+            border-color: var(--text-muted);
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
         
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(17, 17, 17, 0.9));
+            padding: 6rem 0;
             text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--accent);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--accent-glow) 50%, transparent 52%);
+            background-size: 10px 10px;
+            opacity: 0.1;
+            pointer-events: none;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-shadow: 0 0 20px var(--accent-glow);
+            letter-spacing: 3px;
+        }
+        
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            border-right: 2px solid var(--accent);
+            display: inline-block;
+            padding-right: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { border-color: var(--accent); }
+            50% { border-color: transparent; }
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 3rem;
+            color: var(--text-secondary);
         }
         
+        /* Features Section */
         .section {
-            padding: 3rem 0;
+            padding: 5rem 0;
+            border-bottom: 1px solid #222;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: var(--primary);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::before {
+            content: "[ ";
+            color: var(--accent);
+        }
+        
+        .section-title::after {
+            content: " ]";
+            color: var(--accent);
         }
         
         .features {
@@ -139,81 +258,128 @@
         }
         
         .feature-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #0a0a0a, #111111);
+            border: 1px solid #222;
+            border-radius: 0;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
             transition: transform 0.3s;
         }
         
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+        
         .feature-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
             transform: translateY(-5px);
         }
         
         .feature-icon {
             font-size: 2.5rem;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--accent-glow);
         }
         
         .feature-card h3 {
             margin-bottom: 1rem;
-            color: var(--primary);
+            color: var(--text-primary);
+            font-size: 1.3rem;
         }
         
+        /* Login/Register Forms */
         .login-container {
-            max-width: 400px;
+            max-width: 500px;
             margin: 2rem auto;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #0a0a0a, #111111);
+            padding: 3rem;
+            border: 1px solid #222;
+            position: relative;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
             font-size: 1rem;
+            transition: all 0.3s;
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
         }
         
         .form-footer {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
         
         .form-footer a {
             color: var(--accent);
             text-decoration: none;
+            transition: all 0.3s;
         }
         
+        .form-footer a:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        /* Dashboard */
         .dashboard {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 2rem;
         }
         
         .sidebar {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #0a0a0a, #111111);
+            border: 1px solid #222;
+            padding: 2rem 0;
         }
         
         .sidebar-menu {
@@ -226,25 +392,38 @@
         
         .sidebar-menu a {
             display: block;
-            padding: 0.75rem;
-            color: var(--dark);
+            padding: 1rem 2rem;
+            color: var(--text-secondary);
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            font-weight: bold;
+        }
+        
+        .sidebar-menu a::before {
+            content: "> ";
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .sidebar-menu a:hover, .sidebar-menu a.active {
-            background-color: var(--accent);
-            color: white;
+            background: rgba(0, 255, 65, 0.05);
+            color: var(--text-primary);
+            border-left-color: var(--accent);
+        }
+        
+        .sidebar-menu a:hover::before, .sidebar-menu a.active::before {
+            opacity: 1;
         }
         
         .main-content {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #0a0a0a, #111111);
+            border: 1px solid #222;
+            padding: 2rem;
         }
         
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -253,22 +432,52 @@
         }
         
         .stat-card {
-            background-color: var(--light);
-            border-radius: 8px;
-            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            padding: 2rem;
             text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .stat-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
         
         .stat-value {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
             color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+            margin-bottom: 0.5rem;
         }
         
         .stat-label {
-            color: var(--secondary);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
+        /* Tables */
         .challenges-table, .scoreboard-table {
             width: 100%;
             border-collapse: collapse;
@@ -276,44 +485,60 @@
         }
         
         .challenges-table th, .scoreboard-table th {
-            background-color: var(--primary);
-            color: white;
-            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text-primary);
+            padding: 1rem;
             text-align: left;
+            border-bottom: 2px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
         
         .challenges-table td, .scoreboard-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+            border-bottom: 1px solid #222;
+            transition: all 0.3s;
+        }
+        
+        .challenges-table tr:hover td {
+            background: rgba(0, 255, 65, 0.05);
+            color: var(--text-primary);
         }
         
         .challenge-difficulty {
             display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
+            padding: 0.4rem 1rem;
+            border-radius: 0;
             font-size: 0.8rem;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .difficulty-easy {
-            background-color: var(--success);
-            color: white;
+            background: rgba(0, 255, 65, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
         }
         
         .difficulty-medium {
-            background-color: var(--warning);
-            color: white;
+            background: rgba(255, 170, 0, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
         }
         
         .difficulty-hard {
-            background-color: var(--danger);
-            color: white;
+            background: rgba(255, 0, 51, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
         }
         
+        /* Footer */
         footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 0;
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid var(--accent);
+            padding: 3rem 0 1rem;
             margin-top: 3rem;
         }
         
@@ -322,6 +547,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-section {
@@ -330,17 +556,46 @@
         }
         
         .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--accent);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
         }
         
         .footer-bottom {
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--secondary);
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
         
+        /* Matrix Rain Effect */
+        @keyframes matrixRain {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000%);
+                opacity: 0;
+            }
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: matrixRain 5s linear infinite;
+            text-shadow: 0 0 5px var(--accent);
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .dashboard {
                 grid-template-columns: 1fr;
@@ -350,6 +605,10 @@
                 display: none;
             }
             
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
             .mobile-menu-btn {
                 display: block;
             }
@@ -357,20 +616,23 @@
     </style>
 </head>
 <body>
+    <!-- Matrix Rain Background -->
+    <div id="matrix-bg"></div>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">songwa<span>CTF</span></div>
+                <div class="logo">songwaCTF</div>
                 <div class="nav-links">
-                    <a href="#home">Beranda</a>
-                    <a href="#about">Tentang</a>
-                    <a href="#challenges">Challenges</a>
-                    <a href="#scoreboard">Scoreboard</a>
+                    <a href="#home">[HOME]</a>
+                    <a href="#about">[ABOUT]</a>
+                    <a href="#challenges">[CHALLENGES]</a>
+                    <a href="#scoreboard">[SCOREBOARD]</a>
                 </div>
                 <div class="auth-buttons">
-                    <button class="btn btn-outline" onclick="showLogin()">Login</button>
-                    <button class="btn btn-primary" onclick="showRegister()">Daftar</button>
+                    <button class="btn btn-outline" onclick="showLogin()">ACCESS</button>
+                    <button class="btn btn-primary" onclick="showRegister()">ENLIST</button>
                 </div>
             </nav>
         </div>
@@ -379,31 +641,37 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Platform CTF Gratis untuk Pembelajaran</h1>
-            <p>Uji kemampuan keamanan siber Anda dengan berbagai tantangan CTF yang menarik. Tingkatkan skill hacking Anda dengan cara yang menyenangkan!</p>
-            <button class="btn btn-primary" onclick="showRegister()">Mulai Sekarang</button>
+            <h1>SONGWA CTF PLATFORM</h1>
+            <div class="terminal-text">>_ INITIALIZING HACKING ENVIRONMENT...</div>
+            <p>ELITE CYBERSECURITY TRAINING PLATFORM. TEST YOUR SKILLS, BREAK THE SYSTEMS, MASTER THE ART OF HACKING.</p>
+            <button class="btn btn-primary" onclick="showRegister()">BEGIN INFILTRATION</button>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">Mengapa Memilih songwaCTF?</h2>
+            <h2 class="section-title">SYSTEM CAPABILITIES</h2>
             <div class="features">
                 <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>Beragam Kategori</h3>
-                    <p>Tantangan dari berbagai kategori seperti cryptography, web exploitation, forensics, reverse engineering, dan banyak lagi.</p>
+                    <div class="feature-icon">🔓</div>
+                    <h3>CRYPTOGRAPHY</h3>
+                    <p>Decrypt encrypted messages, break ciphers, and master cryptographic algorithms in real-world scenarios.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Statistik Lengkap</h3>
-                    <p>Pantau perkembangan Anda dengan statistik dan scoreboard yang terperinci untuk melihat peringkat Anda di antara peserta lain.</p>
+                    <div class="feature-icon">🌐</div>
+                    <h3>WEB EXPLOITATION</h3>
+                    <p>Exploit web vulnerabilities, SQL injection, XSS, and other OWASP top 10 security risks.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Platform Gratis</h3>
-                    <p>Kami percaya pendidikan keamanan siber harus dapat diakses oleh semua orang. Platform ini sepenuhnya gratis untuk digunakan.</p>
+                    <div class="feature-icon">🔍</div>
+                    <h3>DIGITAL FORENSICS</h3>
+                    <p>Analyze digital evidence, recover deleted files, and trace attacker activities through system artifacts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>REVERSE ENGINEERING</h3>
+                    <p>Decompile and analyze malicious software, understand obfuscated code, and find hidden vulnerabilities.</p>
                 </div>
             </div>
         </div>
@@ -413,120 +681,120 @@
     <section class="section" id="auth-forms" style="display: none;">
         <div class="container">
             <div class="login-container" id="login-form">
-                <h2 style="text-align: center; margin-bottom: 1.5rem;">Login ke Akun Anda</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">SYSTEM ACCESS</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="login-username">Username atau Email</label>
-                        <input type="text" id="login-username" class="form-control" required>
+                        <label for="login-username">OPERATOR ID</label>
+                        <input type="text" id="login-username" class="form-control" placeholder="ENTER USERNAME OR EMAIL" required>
                     </div>
                     <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" class="form-control" required>
+                        <label for="login-password">ACCESS CODE</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="ENTER PASSWORD" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">AUTHENTICATE</button>
                 </form>
                 <div class="form-footer">
-                    <p>Belum punya akun? <a href="#" onclick="showRegister()">Daftar di sini</a></p>
+                    <p>NEW OPERATOR? <a href="#" onclick="showRegister()">REQUEST CLEARANCE</a></p>
                 </div>
             </div>
 
             <div class="login-container" id="register-form" style="display: none;">
-                <h2 style="text-align: center; margin-bottom: 1.5rem;">Buat Akun Baru</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">REQUEST CLEARANCE</h2>
                 <form id="registerForm">
                     <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" id="register-email" class="form-control" required>
+                        <label for="register-email">ENCRYPTION KEY</label>
+                        <input type="email" id="register-email" class="form-control" placeholder="ENTER EMAIL ADDRESS" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-username">Username</label>
-                        <input type="text" id="register-username" class="form-control" required>
+                        <label for="register-username">OPERATOR TAG</label>
+                        <input type="text" id="register-username" class="form-control" placeholder="CHOOSE USERNAME" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-password">Password</label>
-                        <input type="password" id="register-password" class="form-control" required>
+                        <label for="register-password">ACCESS CODE</label>
+                        <input type="password" id="register-password" class="form-control" placeholder="CREATE PASSWORD" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-confirm-password">Konfirmasi Password</label>
-                        <input type="password" id="register-confirm-password" class="form-control" required>
+                        <label for="register-confirm-password">VERIFY ACCESS CODE</label>
+                        <input type="password" id="register-confirm-password" class="form-control" placeholder="CONFIRM PASSWORD" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Daftar</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">INITIATE ENLISTMENT</button>
                 </form>
                 <div class="form-footer">
-                    <p>Sudah punya akun? <a href="#" onclick="showLogin()">Login di sini</a></p>
+                    <p>ALREADY CLEARED? <a href="#" onclick="showLogin()">PROCEED TO ACCESS</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Dashboard Section (Visible after login) -->
+    <!-- Dashboard Section -->
     <section class="section" id="dashboard" style="display: none;">
         <div class="container">
-            <h2 class="section-title">Dashboard CTF</h2>
+            <h2 class="section-title">OPERATIONS DASHBOARD</h2>
             <div class="dashboard">
                 <div class="sidebar">
                     <ul class="sidebar-menu">
-                        <li><a href="#" class="active" onclick="showDashboardTab('challenges')">Challenges</a></li>
-                        <li><a href="#" onclick="showDashboardTab('scoreboard')">Scoreboard</a></li>
-                        <li><a href="#" onclick="showDashboardTab('profile')">Profil Saya</a></li>
-                        <li><a href="#" onclick="logout()">Logout</a></li>
+                        <li><a href="#" class="active" onclick="showDashboardTab('challenges')">MISSION BRIEFING</a></li>
+                        <li><a href="#" onclick="showDashboardTab('scoreboard')">OPERATORS RANKING</a></li>
+                        <li><a href="#" onclick="showDashboardTab('profile')">OPERATOR PROFILE</a></li>
+                        <li><a href="#" onclick="logout()">TERMINATE SESSION</a></li>
                     </ul>
                 </div>
                 <div class="main-content">
                     <!-- Challenges Tab -->
                     <div id="challenges-tab">
-                        <h3>Daftar Challenges</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">ACTIVE MISSIONS</h3>
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <div class="stat-value">5/15</div>
-                                <div class="stat-label">Challenges Selesai</div>
+                                <div class="stat-label">MISSIONS COMPLETED</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-value">350</div>
-                                <div class="stat-label">Total Poin</div>
+                                <div class="stat-label">INTEL POINTS</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-value">#12</div>
-                                <div class="stat-label">Peringkat</div>
+                                <div class="stat-label">CURRENT RANK</div>
                             </div>
                         </div>
                         <table class="challenges-table">
                             <thead>
                                 <tr>
-                                    <th>Nama Challenge</th>
-                                    <th>Kategori</th>
-                                    <th>Kesulitan</th>
-                                    <th>Poin</th>
-                                    <th>Status</th>
+                                    <th>MISSION ID</th>
+                                    <th>CATEGORY</th>
+                                    <th>DIFFICULTY</th>
+                                    <th>BOUNTY</th>
+                                    <th>STATUS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Simple Encryption</td>
+                                    <td>Operation: Cypher Break</td>
                                     <td>Cryptography</td>
-                                    <td><span class="challenge-difficulty difficulty-easy">Easy</span></td>
+                                    <td><span class="challenge-difficulty difficulty-easy">ROOKIE</span></td>
                                     <td>50</td>
-                                    <td><span style="color: var(--success);">✓ Selesai</span></td>
+                                    <td><span style="color: var(--success);">✓ COMPROMISED</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Web Injection</td>
+                                    <td>Web Server Infiltration</td>
                                     <td>Web Exploitation</td>
-                                    <td><span class="challenge-difficulty difficulty-medium">Medium</span></td>
+                                    <td><span class="challenge-difficulty difficulty-medium">OPERATIVE</span></td>
                                     <td>100</td>
-                                    <td><span style="color: var(--warning);">● Dalam Proses</span></td>
+                                    <td><span style="color: var(--warning);">● IN PROGRESS</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Binary Analysis</td>
+                                    <td>Binary Deconstruction</td>
                                     <td>Reverse Engineering</td>
-                                    <td><span class="challenge-difficulty difficulty-hard">Hard</span></td>
+                                    <td><span class="challenge-difficulty difficulty-hard">ELITE</span></td>
                                     <td>200</td>
-                                    <td><span style="color: var(--danger);">✗ Belum Dimulai</span></td>
+                                    <td><span style="color: var(--danger);">✗ LOCKED</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Network Forensics</td>
+                                    <td>Evidence Recovery</td>
                                     <td>Forensics</td>
-                                    <td><span class="challenge-difficulty difficulty-medium">Medium</span></td>
+                                    <td><span class="challenge-difficulty difficulty-medium">OPERATIVE</span></td>
                                     <td>150</td>
-                                    <td><span style="color: var(--danger);">✗ Belum Dimulai</span></td>
+                                    <td><span style="color: var(--danger);">✗ LOCKED</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -534,33 +802,33 @@
 
                     <!-- Scoreboard Tab -->
                     <div id="scoreboard-tab" style="display: none;">
-                        <h3>Scoreboard</h3>
-                        <p>Peringkat peserta berdasarkan total poin yang dikumpulkan.</p>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">OPERATORS RANKING</h3>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">TOP OPERATORS BY INTELLIGENCE POINTS</p>
                         <table class="scoreboard-table">
                             <thead>
                                 <tr>
-                                    <th>Peringkat</th>
-                                    <th>Username</th>
-                                    <th>Poin</th>
-                                    <th>Challenges Selesai</th>
+                                    <th>RANK</th>
+                                    <th>OPERATOR</th>
+                                    <th>POINTS</th>
+                                    <th>SUCCESS RATE</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>hacker_pro</td>
+                                    <td>#1</td>
+                                    <td>phantom_hacker</td>
                                     <td>1250</td>
                                     <td>12/15</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
-                                    <td>cyber_wizard</td>
+                                    <td>#2</td>
+                                    <td>cyber_ghost</td>
                                     <td>1100</td>
                                     <td>11/15</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
-                                    <td>code_breaker</td>
+                                    <td>#3</td>
+                                    <td>binary_ninja</td>
                                     <td>950</td>
                                     <td>10/15</td>
                                 </tr>
@@ -570,9 +838,9 @@
                                     <td>...</td>
                                     <td>...</td>
                                 </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td id="current-user">your_username</td>
+                                <tr style="background: rgba(0, 255, 65, 0.1);">
+                                    <td>#12</td>
+                                    <td id="current-user">operator_01</td>
                                     <td>350</td>
                                     <td>5/15</td>
                                 </tr>
@@ -582,20 +850,20 @@
 
                     <!-- Profile Tab -->
                     <div id="profile-tab" style="display: none;">
-                        <h3>Profil Saya</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">OPERATOR PROFILE</h3>
                         <div class="form-group">
-                            <label for="profile-username">Username</label>
-                            <input type="text" id="profile-username" class="form-control" value="your_username">
+                            <label for="profile-username">OPERATOR TAG</label>
+                            <input type="text" id="profile-username" class="form-control" value="operator_01">
                         </div>
                         <div class="form-group">
-                            <label for="profile-email">Email</label>
-                            <input type="email" id="profile-email" class="form-control" value="user@example.com">
+                            <label for="profile-email">ENCRYPTION KEY</label>
+                            <input type="email" id="profile-email" class="form-control" value="operator@songwactf.id">
                         </div>
                         <div class="form-group">
-                            <label for="profile-password">Password Baru (kosongkan jika tidak ingin mengubah)</label>
-                            <input type="password" id="profile-password" class="form-control">
+                            <label for="profile-password">NEW ACCESS CODE</label>
+                            <input type="password" id="profile-password" class="form-control" placeholder="LEAVE BLANK TO KEEP CURRENT">
                         </div>
-                        <button class="btn btn-primary">Perbarui Profil</button>
+                        <button class="btn btn-primary">UPDATE PROFILE</button>
                     </div>
                 </div>
             </div>
@@ -607,31 +875,47 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>songwaCTF</h3>
-                    <p>Platform CTF gratis untuk pembelajaran dan pengembangan skill keamanan siber.</p>
+                    <h3>SONGWA CTF</h3>
+                    <p>ELITE CYBERSECURITY TRAINING PLATFORM FOR THE NEXT GENERATION OF SECURITY OPERATORS.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Tautan Cepat</h3>
+                    <h3>NAVIGATION</h3>
                     <ul style="list-style: none;">
-                        <li><a href="#home" style="color: white; text-decoration: none;">Beranda</a></li>
-                        <li><a href="#about" style="color: white; text-decoration: none;">Tentang</a></li>
-                        <li><a href="#challenges" style="color: white; text-decoration: none;">Challenges</a></li>
-                        <li><a href="#scoreboard" style="color: white; text-decoration: none;">Scoreboard</a></li>
+                        <li><a href="#home" style="color: var(--text-secondary); text-decoration: none;">> HOME BASE</a></li>
+                        <li><a href="#about" style="color: var(--text-secondary); text-decoration: none;">> SYSTEM INFO</a></li>
+                        <li><a href="#challenges" style="color: var(--text-secondary); text-decoration: none;">> MISSIONS</a></li>
+                        <li><a href="#scoreboard" style="color: var(--text-secondary); text-decoration: none;">> RANKINGS</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p>Email: info@songwactf.id</p>
-                    <p>GitHub: AGAMOGT/songwaCTF</p>
+                    <h3>CONTACT</h3>
+                    <p>> ENCRYPTION: info@songwactf.id</p>
+                    <p>> GITHUB: AGAMOGT/songwaCTF</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 songwaCTF. All rights reserved. | FUCK THE HACK!</p>
+                <p>// SYSTEM STATUS: OPERATIONAL | FUCK THE HACK! //</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrix-bg');
+            const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + 'vw';
+                char.style.animationDelay = Math.random() * 5 + 's';
+                char.style.animationDuration = (3 + Math.random() * 5) + 's';
+                matrixBg.appendChild(char);
+            }
+        }
+
         // Fungsi untuk menampilkan form login
         function showLogin() {
             document.getElementById('auth-forms').style.display = 'block';
@@ -662,7 +946,7 @@
             document.getElementById('dashboard').style.display = 'block';
             
             // Update username di scoreboard
-            const username = document.getElementById('login-username').value || 'your_username';
+            const username = document.getElementById('login-username').value || 'operator_01';
             document.getElementById('current-user').textContent = username;
             document.getElementById('profile-username').value = username;
         });
@@ -674,7 +958,7 @@
             const confirmPassword = document.getElementById('register-confirm-password').value;
             
             if (password !== confirmPassword) {
-                alert('Password dan konfirmasi password tidak cocok!');
+                alert('ACCESS CODE MISMATCH! VERIFICATION FAILED.');
                 return;
             }
             
@@ -729,6 +1013,9 @@
                 }
             });
         });
+
+        // Initialize matrix rain
+        createMatrixRain();
     </script>
 </body>
 </html>
