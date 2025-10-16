@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - songwaCTF</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">songwaCTF</div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="challenges/index.html">Challenges</a>
+                <a href="pages/scoreboard.html">Scoreboard</a>
+                <a href="pages/profile.html">Profil</a>
+            </div>
+            <div class="user-menu">
+                <span id="usernameDisplay">User</span>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+            <h1>Dashboard Operator</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="completedChallenges">0/20</div>
+                    <div class="stat-label">Challenge Diselesaikan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalPoints">0</div>
+                    <div class="stat-label">Total Poin</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="currentRank">#-</div>
+                    <div class="stat-label">Peringkat</div>
+                </div>
+            </div>
+
+            <div class="recent-challenges">
+                <h2>Challenge Terbaru</h2>
+                <div id="challengesList">
+                    <!-- Daftar challenge -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
