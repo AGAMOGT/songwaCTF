@@ -1,1 +1,12 @@
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Courier New', monospace; background: #0a0a0a; color: #00ff00; }
+header { text-align: center; padding: 2rem; background: #000; }
+header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+header p { font-size: 1.2rem; opacity: 0.8; }
+
+.challenge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem; }
+.category { background: #111; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; }
+.category h2 { color: #ff6b35; margin-bottom: 1rem; }
+.category a { display: block; padding: 0.8rem; margin: 0.5rem 0; color: #00ff00; text-decoration: none; border: 1px solid #333; border-radius: 4px; transition: all 0.3s; }
+.category a:hover { background: #00ff00; color: #000; }
