@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caesar Cipher - songwaCTF</title>
+    <style>
+        body { 
+            background: #0a0a0a; 
+            color: #00ff41; 
+            font-family: 'Courier New', monospace;
+            padding: 2rem;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .challenge-box { 
+            background: #111; 
+            border: 1px solid #00ff41;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #00ff41;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        button {
+            background: transparent;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        button:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+        .flag { 
+            color: #ff0033; 
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .cipher-text {
+            background: #000;
+            padding: 1rem;
+            border: 1px solid #333;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Caesar Cipher Challenge</h1>
+        <div class="challenge-box">
+            <h2>Decrypt the Secret Message</h2>
+            <p><strong>Encrypted Message:</strong></p>
+            <div class="cipher-text">XLI JMRRW MRKW ERH TPEKI</div>
+            <p><strong>Hint:</strong> Caesar cipher with shift = 4</p>
+            
+            <input type="text" id="decryptedText" placeholder="Enter decrypted text in UPPERCASE">
+            <button onclick="checkSolution()">Submit Solution</button>
+            
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkSolution() {
+            const solution = document.getElementById('decryptedText').value.toUpperCase();
+            if (solution === "THE FINISH LINE IS FLAG") {
+                document.getElementById('result').innerHTML = 
+                    '<div class="flag">🎉 Correct! Flag: SWA{c43s4r_3ncrypt10n}</div>' +
+                    '<p>You successfully decrypted the Caesar cipher!</p>';
+            } else {
+                document.getElementById('result').innerHTML = 
+                    '<div style="color: #ff0033;">❌ Incorrect. Try again!</div>';
+            }
+        }
+    </script>
+</body>
+</html>
