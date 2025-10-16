@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>songwaCTF - Elite Hacking Platform</title>
+    <title>songwaCTF - Platform CTF Gratis</title>
     <style>
         :root {
             --primary: #0a0a0a;
@@ -653,6 +653,30 @@
         .challenge-link:hover {
             text-shadow: 0 0 10px var(--accent-glow);
         }
+
+        /* QR Code Styles */
+        .qr-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            border: 2px solid var(--accent);
+            padding: 10px;
+            background: white;
+        }
+        
+        .flag-input {
+            width: 300px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            color: var(--text-primary);
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
@@ -665,14 +689,14 @@
             <nav>
                 <div class="logo">songwaCTF</div>
                 <div class="nav-links">
-                    <a href="#home">[HOME]</a>
-                    <a href="#about">[ABOUT]</a>
+                    <a href="#home">[BERANDA]</a>
+                    <a href="#about">[TENTANG]</a>
                     <a href="#challenges">[CHALLENGES]</a>
                     <a href="#scoreboard">[SCOREBOARD]</a>
                 </div>
                 <div class="auth-buttons">
-                    <button class="btn btn-outline" onclick="showLogin()">ACCESS</button>
-                    <button class="btn btn-primary" onclick="showRegister()">ENLIST</button>
+                    <button class="btn btn-outline" onclick="showLogin()">MASUK</button>
+                    <button class="btn btn-primary" onclick="showRegister()">DAFTAR</button>
                 </div>
             </nav>
         </div>
@@ -682,36 +706,36 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>SONGWA CTF PLATFORM</h1>
-            <div class="terminal-text">>_ INITIALIZING HACKING ENVIRONMENT...</div>
-            <p>ELITE CYBERSECURITY TRAINING PLATFORM. TEST YOUR SKILLS, BREAK THE SYSTEMS, MASTER THE ART OF HACKING.</p>
-            <button class="btn btn-primary" onclick="showRegister()">BEGIN INFILTRATION</button>
+            <div class="terminal-text">>_ MEMULAI LINGKUNGAN HACKING...</div>
+            <p>PLATFORM PELATIHAN KEAMANAN SIBER ELITE. UJI KEMAMPUAN ANDA, BOBOL SISTEM, KUASAI SENI HACKING.</p>
+            <button class="btn btn-primary" onclick="showRegister()">MULAI INFILTRASI</button>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">SYSTEM CAPABILITIES</h2>
+            <h2 class="section-title">KEMAMPUAN SISTEM</h2>
             <div class="features">
                 <div class="feature-card">
                     <div class="feature-icon">🔓</div>
-                    <h3>CRYPTOGRAPHY</h3>
-                    <p>Decrypt encrypted messages, break ciphers, and master cryptographic algorithms in real-world scenarios.</p>
+                    <h3>KRIPTOGRAFI</h3>
+                    <p>Dekripsi pesan terenkripsi, pecahkan cipher, dan kuasai algoritma kriptografi dalam skenario dunia nyata.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
                     <h3>WEB EXPLOITATION</h3>
-                    <p>Exploit web vulnerabilities, SQL injection, XSS, and other OWASP top 10 security risks.</p>
+                    <p>Eksploitasi kerentanan web, SQL injection, XSS, dan risiko keamanan OWASP top 10 lainnya.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
-                    <h3>DIGITAL FORENSICS</h3>
-                    <p>Analyze digital evidence, recover deleted files, and trace attacker activities through system artifacts.</p>
+                    <h3>FORENSIK DIGITAL</h3>
+                    <p>Analisis bukti digital, pulihkan file yang dihapus, dan lacak aktivitas penyerang melalui artefak sistem.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>REVERSE ENGINEERING</h3>
-                    <p>Decompile and analyze malicious software, understand obfuscated code, and find hidden vulnerabilities.</p>
+                    <p>Dekompilasi dan analisis perangkat lunak berbahaya, pahami kode yang diobfuscate, dan temukan kerentanan tersembunyi.</p>
                 </div>
             </div>
         </div>
@@ -720,7 +744,7 @@
     <!-- Challenges Section -->
     <section class="section" id="challenges">
         <div class="container">
-            <h2 class="section-title">ACTIVE OPERATIONS</h2>
+            <h2 class="section-title">OPERASI AKTIF</h2>
             <div class="challenge-list" id="challenges-list">
                 <!-- Challenges will be loaded dynamically -->
             </div>
@@ -731,46 +755,46 @@
     <section class="section" id="auth-forms" style="display: none;">
         <div class="container">
             <div class="login-container" id="login-form">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">SYSTEM ACCESS</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">AKSES SISTEM</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="login-username">OPERATOR ID</label>
-                        <input type="text" id="login-username" class="form-control" placeholder="ENTER USERNAME OR EMAIL" required>
+                        <label for="login-username">ID OPERATOR</label>
+                        <input type="text" id="login-username" class="form-control" placeholder="MASUKKAN USERNAME ATAU EMAIL" required>
                     </div>
                     <div class="form-group">
-                        <label for="login-password">ACCESS CODE</label>
-                        <input type="password" id="login-password" class="form-control" placeholder="ENTER PASSWORD" required>
+                        <label for="login-password">KODE AKSES</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="MASUKKAN PASSWORD" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">AUTHENTICATE</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">AUTENTIKASI</button>
                 </form>
                 <div class="form-footer">
-                    <p>NEW OPERATOR? <a href="#" onclick="showRegister()">REQUEST CLEARANCE</a></p>
+                    <p>OPERATOR BARU? <a href="#" onclick="showRegister()">MINTA IZIN</a></p>
                 </div>
             </div>
 
             <div class="login-container" id="register-form" style="display: none;">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">REQUEST CLEARANCE</h2>
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">MINTA IZIN</h2>
                 <form id="registerForm">
                     <div class="form-group">
-                        <label for="register-email">ENCRYPTION KEY</label>
-                        <input type="email" id="register-email" class="form-control" placeholder="ENTER EMAIL ADDRESS" required>
+                        <label for="register-email">KUNCI ENKRIPSI</label>
+                        <input type="email" id="register-email" class="form-control" placeholder="MASUKKAN ALAMAT EMAIL" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-username">OPERATOR TAG</label>
-                        <input type="text" id="register-username" class="form-control" placeholder="CHOOSE USERNAME" required>
+                        <label for="register-username">TAG OPERATOR</label>
+                        <input type="text" id="register-username" class="form-control" placeholder="PILIH USERNAME" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-password">ACCESS CODE</label>
-                        <input type="password" id="register-password" class="form-control" placeholder="CREATE PASSWORD" required>
+                        <label for="register-password">KODE AKSES</label>
+                        <input type="password" id="register-password" class="form-control" placeholder="BUAT PASSWORD" required>
                     </div>
                     <div class="form-group">
-                        <label for="register-confirm-password">VERIFY ACCESS CODE</label>
-                        <input type="password" id="register-confirm-password" class="form-control" placeholder="CONFIRM PASSWORD" required>
+                        <label for="register-confirm-password">VERIFIKASI KODE AKSES</label>
+                        <input type="password" id="register-confirm-password" class="form-control" placeholder="KONFIRMASI PASSWORD" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">INITIATE ENLISTMENT</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">MULAI PENDAFTARAN</button>
                 </form>
                 <div class="form-footer">
-                    <p>ALREADY CLEARED? <a href="#" onclick="showLogin()">PROCEED TO ACCESS</a></p>
+                    <p>SUDAH PUNYA IZIN? <a href="#" onclick="showLogin()">LANJUTKAN AKSES</a></p>
                 </div>
             </div>
         </div>
@@ -779,32 +803,32 @@
     <!-- Dashboard Section -->
     <section class="section" id="dashboard" style="display: none;">
         <div class="container">
-            <h2 class="section-title">OPERATIONS DASHBOARD</h2>
+            <h2 class="section-title">DASHBOARD OPERASI</h2>
             <div class="dashboard">
                 <div class="sidebar">
                     <ul class="sidebar-menu">
-                        <li><a href="#" class="active" onclick="showDashboardTab('challenges')">MISSION BRIEFING</a></li>
-                        <li><a href="#" onclick="showDashboardTab('scoreboard')">OPERATORS RANKING</a></li>
-                        <li><a href="#" onclick="showDashboardTab('profile')">OPERATOR PROFILE</a></li>
-                        <li><a href="#" onclick="logout()">TERMINATE SESSION</a></li>
+                        <li><a href="#" class="active" onclick="showDashboardTab('challenges')">BRIEFING MISI</a></li>
+                        <li><a href="#" onclick="showDashboardTab('scoreboard')">PERINGKAT OPERATOR</a></li>
+                        <li><a href="#" onclick="showDashboardTab('profile')">PROFIL OPERATOR</a></li>
+                        <li><a href="#" onclick="logout()">AKHIRI SESI</a></li>
                     </ul>
                 </div>
                 <div class="main-content">
                     <!-- Challenges Tab -->
                     <div id="challenges-tab">
-                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">ACTIVE MISSIONS</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">MISI AKTIF</h3>
                         <div class="stats-grid">
                             <div class="stat-card">
-                                <div class="stat-value" id="completed-challenges">0/8</div>
-                                <div class="stat-label">MISSIONS COMPLETED</div>
+                                <div class="stat-value" id="completed-challenges">0/9</div>
+                                <div class="stat-label">MISI SELESAI</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-value" id="total-points">0</div>
-                                <div class="stat-label">INTEL POINTS</div>
+                                <div class="stat-label">POIN INTEL</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-value" id="current-rank">#-</div>
-                                <div class="stat-label">CURRENT RANK</div>
+                                <div class="stat-label">PERINGKAT SAAT INI</div>
                             </div>
                         </div>
                         <div id="dashboard-challenges-list">
@@ -814,15 +838,15 @@
 
                     <!-- Scoreboard Tab -->
                     <div id="scoreboard-tab" style="display: none;">
-                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">OPERATORS RANKING</h3>
-                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">TOP OPERATORS BY INTELLIGENCE POINTS</p>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">PERINGKAT OPERATOR</h3>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">OPERATOR TERATAS BERDASARKAN POIN INTELIJEN</p>
                         <table class="scoreboard-table">
                             <thead>
                                 <tr>
-                                    <th>RANK</th>
+                                    <th>PERINGKAT</th>
                                     <th>OPERATOR</th>
-                                    <th>POINTS</th>
-                                    <th>SUCCESS RATE</th>
+                                    <th>POIN</th>
+                                    <th>TINGKAT KEBERHASILAN</th>
                                 </tr>
                             </thead>
                             <tbody id="scoreboard-body">
@@ -833,20 +857,20 @@
 
                     <!-- Profile Tab -->
                     <div id="profile-tab" style="display: none;">
-                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">OPERATOR PROFILE</h3>
+                        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">PROFIL OPERATOR</h3>
                         <div class="form-group">
-                            <label for="profile-username">OPERATOR TAG</label>
+                            <label for="profile-username">TAG OPERATOR</label>
                             <input type="text" id="profile-username" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="profile-email">ENCRYPTION KEY</label>
+                            <label for="profile-email">KUNCI ENKRIPSI</label>
                             <input type="email" id="profile-email" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="profile-password">NEW ACCESS CODE</label>
-                            <input type="password" id="profile-password" class="form-control" placeholder="LEAVE BLANK TO KEEP CURRENT">
+                            <label for="profile-password">KODE AKSES BARU</label>
+                            <input type="password" id="profile-password" class="form-control" placeholder="KOSONGKAN JIKA TIDAK INGIN MENGUBAH">
                         </div>
-                        <button class="btn btn-primary" onclick="updateProfile()">UPDATE PROFILE</button>
+                        <button class="btn btn-primary" onclick="updateProfile()">PERBARUI PROFIL</button>
                     </div>
                 </div>
             </div>
@@ -859,117 +883,129 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>SONGWA CTF</h3>
-                    <p>ELITE CYBERSECURITY TRAINING PLATFORM FOR THE NEXT GENERATION OF SECURITY OPERATORS.</p>
+                    <p>PLATFORM PELATIHAN KEAMANAN SIBER ELITE UNTUK GENERASI BERIKUTNYA OPERATOR KEAMANAN.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>NAVIGATION</h3>
+                    <h3>NAVIGASI</h3>
                     <ul style="list-style: none;">
-                        <li><a href="#home" style="color: var(--text-secondary); text-decoration: none;">> HOME BASE</a></li>
-                        <li><a href="#about" style="color: var(--text-secondary); text-decoration: none;">> SYSTEM INFO</a></li>
-                        <li><a href="#challenges" style="color: var(--text-secondary); text-decoration: none;">> MISSIONS</a></li>
-                        <li><a href="#scoreboard" style="color: var(--text-secondary); text-decoration: none;">> RANKINGS</a></li>
+                        <li><a href="#home" style="color: var(--text-secondary); text-decoration: none;">> BASIS UTAMA</a></li>
+                        <li><a href="#about" style="color: var(--text-secondary); text-decoration: none;">> INFO SISTEM</a></li>
+                        <li><a href="#challenges" style="color: var(--text-secondary); text-decoration: none;">> MISI</a></li>
+                        <li><a href="#scoreboard" style="color: var(--text-secondary); text-decoration: none;">> PERINGKAT</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>CONTACT</h3>
-                    <p>> ENCRYPTION: info@songwactf.id</p>
+                    <h3>KONTAK</h3>
+                    <p>> ENKRIPSI: info@songwactf.id</p>
                     <p>> GITHUB: AGAMOGT/songwaCTF</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>// SYSTEM STATUS: OPERATIONAL | FUCK THE HACK! //</p>
+                <p>// STATUS SISTEM: OPERASIONAL | FUCK THE HACK! //</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // CTF Challenges Data
+        // CTF Challenges Data - UPDATED WITH WSG{} FLAGS
         const challenges = [
             {
                 id: 1,
-                name: "SQL Injection Basics",
+                name: "Pemindaian QR Code",
+                category: "Miscellaneous",
+                difficulty: "easy",
+                points: 20,
+                description: "Pindai QR code untuk mendapatkan flag tersembunyi",
+                flag: "WSG{qr_c0d3_1s_fun}",
+                path: "#",
+                solved: false,
+                hasQR: true
+            },
+            {
+                id: 2,
+                name: "SQL Injection Dasar",
                 category: "Web Exploitation",
                 difficulty: "easy",
                 points: 50,
-                description: "Bypass login authentication using SQL Injection techniques",
-                flag: "SWA{sql_1nj3ct10n_m4st3r}",
+                description: "Bypass autentikasi login menggunakan teknik SQL Injection",
+                flag: "WSG{sql_1nj3ct10n_m4st3r}",
                 path: "challenges/web/sql-injection/index.html",
                 solved: false
             },
             {
-                id: 2,
-                name: "Caesar Cipher Decryption",
+                id: 3,
+                name: "Dekripsi Caesar Cipher",
                 category: "Cryptography",
                 difficulty: "easy",
                 points: 30,
-                description: "Decrypt the secret message encrypted with Caesar cipher",
-                flag: "SWA{c43s4r_3ncrypt10n}",
+                description: "Dekripsi pesan rahasia yang dienkripsi dengan Caesar cipher",
+                flag: "WSG{c43s4r_3ncrypt10n}",
                 path: "challenges/crypto/caesar-cipher/index.html",
                 solved: false
             },
             {
-                id: 3,
-                name: "Image Metadata Analysis",
+                id: 4,
+                name: "Analisis Metadata Gambar",
                 category: "Forensics",
                 difficulty: "medium",
                 points: 75,
-                description: "Find the hidden flag in image metadata",
-                flag: "SWA{m3t4d4t4_l34k}",
+                description: "Temukan flag tersembunyi dalam metadata gambar",
+                flag: "WSG{m3t4d4t4_l34k}",
                 path: "challenges/forensics/image-metadata/index.html",
                 solved: false
             },
             {
-                id: 4,
+                id: 5,
                 name: "Simple Crackme",
                 category: "Reverse Engineering",
                 difficulty: "hard",
                 points: 100,
-                description: "Reverse engineer the binary to find the password",
-                flag: "SWA{r3v3rs3_3ng1n33r}",
+                description: "Reverse engineer binary untuk menemukan password",
+                flag: "WSG{r3v3rs3_3ng1n33r}",
                 path: "challenges/reversing/simple-crackme/index.html",
                 solved: false
             },
             {
-                id: 5,
-                name: "XSS Vulnerability",
+                id: 6,
+                name: "Kerentanan XSS",
                 category: "Web Exploitation",
                 difficulty: "medium",
                 points: 80,
-                description: "Exploit Cross-Site Scripting vulnerability",
-                flag: "SWA{xss_d0m1n4t0r}",
+                description: "Eksploitasi kerentanan Cross-Site Scripting",
+                flag: "WSG{xss_d0m1n4t0r}",
                 path: "challenges/web/xss-challenge/index.html",
                 solved: false
             },
             {
-                id: 6,
-                name: "RSA Beginner",
+                id: 7,
+                name: "RSA Pemula",
                 category: "Cryptography",
                 difficulty: "medium",
                 points: 60,
-                description: "Break weak RSA encryption",
-                flag: "SWA{rs4_br34k3r}",
+                description: "Bobol enkripsi RSA yang lemah",
+                flag: "WSG{rs4_br34k3r}",
                 path: "challenges/crypto/rsa-beginner/index.html",
                 solved: false
             },
             {
-                id: 7,
-                name: "Network Packet Analysis",
+                id: 8,
+                name: "Analisis Paket Jaringan",
                 category: "Forensics",
                 difficulty: "hard",
                 points: 120,
-                description: "Analyze network capture to find sensitive data",
-                flag: "SWA{p4ck3t_4n4lyst}",
+                description: "Analisis capture jaringan untuk menemukan data sensitif",
+                flag: "WSG{p4ck3t_4n4lyst}",
                 path: "challenges/forensics/network-pcap/index.html",
                 solved: false
             },
             {
-                id: 8,
-                name: "Android APK Analysis",
+                id: 9,
+                name: "Analisis APK Android",
                 category: "Reverse Engineering",
                 difficulty: "hard",
                 points: 150,
-                description: "Reverse engineer Android application",
-                flag: "SWA{4ndr01d_r3v3rs3r}",
+                description: "Reverse engineer aplikasi Android",
+                flag: "WSG{4ndr01d_r3v3rs3r}",
                 path: "challenges/reversing/android-apk/index.html",
                 solved: false
             }
@@ -1012,20 +1048,110 @@
             challenges.forEach(challenge => {
                 const challengeElement = document.createElement('div');
                 challengeElement.className = 'challenge-item';
-                challengeElement.innerHTML = `
-                    <div class="challenge-header">
-                        <div class="challenge-title">${challenge.name}</div>
-                        <div class="challenge-meta">
-                            <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
-                            <span>${challenge.points} pts</span>
-                            <span>${challenge.category}</span>
+                
+                if (challenge.hasQR) {
+                    challengeElement.innerHTML = `
+                        <div class="challenge-header">
+                            <div class="challenge-title">${challenge.name}</div>
+                            <div class="challenge-meta">
+                                <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
+                                <span>${challenge.points} pts</span>
+                                <span>${challenge.category}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="challenge-description">${challenge.description}</div>
-                    <a href="${challenge.path}" class="challenge-link">>> START MISSION</a>
-                `;
+                        <div class="challenge-description">${challenge.description}</div>
+                        <div class="qr-container">
+                            <div class="qr-code" id="qr-${challenge.id}"></div>
+                            <div>
+                                <input type="text" class="flag-input" id="flag-input-${challenge.id}" placeholder="Masukkan flag WSG{...}">
+                                <button class="btn btn-primary" onclick="submitFlag(${challenge.id})">Submit Flag</button>
+                            </div>
+                            <div id="result-${challenge.id}"></div>
+                        </div>
+                    `;
+                } else {
+                    challengeElement.innerHTML = `
+                        <div class="challenge-header">
+                            <div class="challenge-title">${challenge.name}</div>
+                            <div class="challenge-meta">
+                                <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
+                                <span>${challenge.points} pts</span>
+                                <span>${challenge.category}</span>
+                            </div>
+                        </div>
+                        <div class="challenge-description">${challenge.description}</div>
+                        <a href="${challenge.path}" class="challenge-link">>> MULAI MISI</a>
+                    `;
+                }
                 challengesList.appendChild(challengeElement);
             });
+
+            // Generate QR Code for challenge 1
+            generateQRCode(1, "WSG{qr_c0d3_1s_fun}");
+        }
+
+        // Generate QR Code
+        function generateQRCode(challengeId, text) {
+            const qrContainer = document.getElementById(`qr-${challengeId}`);
+            if (qrContainer) {
+                // Simple QR code simulation using CSS
+                qrContainer.innerHTML = `
+                    <div style="width: 100%; height: 100%; background: #000; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr); gap: 2px;">
+                        ${Array(25).fill(0).map((_, i) => 
+                            `<div style="background: ${Math.random() > 0.4 ? '#000' : '#fff'};"></div>`
+                        ).join('')}
+                    </div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #000; font-size: 8px; font-weight: bold;">QR</div>
+                `;
+                qrContainer.title = "Scan QR code ini untuk mendapatkan flag";
+            }
+        }
+
+        // Submit Flag Function
+        function submitFlag(challengeId) {
+            if (!currentUser) {
+                alert('Silakan login terlebih dahulu!');
+                return;
+            }
+
+            const flagInput = document.getElementById(`flag-input-${challengeId}`);
+            const resultDiv = document.getElementById(`result-${challengeId}`);
+            const submittedFlag = flagInput.value.trim();
+
+            const challenge = challenges.find(c => c.id === challengeId);
+            
+            if (challenge && submittedFlag === challenge.flag) {
+                // Update user score
+                const userIndex = users.findIndex(u => u.username === currentUser.username);
+                if (userIndex !== -1) {
+                    if (!users[userIndex].solvedChallenges) {
+                        users[userIndex].solvedChallenges = [];
+                    }
+                    
+                    // Check if not already solved
+                    if (!users[userIndex].solvedChallenges.includes(challengeId)) {
+                        users[userIndex].solvedChallenges.push(challengeId);
+                        users[userIndex].score += challenge.points;
+                        localStorage.setItem('ctfUsers', JSON.stringify(users));
+                        
+                        // Update current user
+                        currentUser = users[userIndex];
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        
+                        resultDiv.innerHTML = '<div style="color: #00ff41;">✓ Berhasil! Flag benar. Poin ditambahkan.</div>';
+                        flagInput.disabled = true;
+                        
+                        // Update dashboard if visible
+                        if (document.getElementById('dashboard').style.display !== 'none') {
+                            updateDashboard();
+                        }
+                    } else {
+                        resultDiv.innerHTML = '<div style="color: #ffaa00;">⚠️ Challenge ini sudah diselesaikan.</div>';
+                    }
+                }
+            } else {
+                resultDiv.innerHTML = '<div style="color: #ff0033;">❌ Flag salah. Coba lagi!</div>';
+            }
         }
 
         // Authentication Functions
@@ -1058,7 +1184,7 @@
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 showDashboard();
             } else {
-                alert('ACCESS DENIED: Invalid credentials');
+                alert('AKSES DITOLAK: Kredensial tidak valid');
             }
         });
 
@@ -1071,17 +1197,17 @@
             const confirmPassword = document.getElementById('register-confirm-password').value;
 
             if (password !== confirmPassword) {
-                alert('ACCESS CODE MISMATCH! VERIFICATION FAILED.');
+                alert('KODE AKSES TIDAK COCOK! VERIFIKASI GAGAL.');
                 return;
             }
 
             if (users.find(u => u.username === username)) {
-                alert('OPERATOR TAG already exists. Choose another.');
+                alert('TAG OPERATOR sudah ada. Pilih yang lain.');
                 return;
             }
 
             if (users.find(u => u.email === email)) {
-                alert('ENCRYPTION KEY already registered.');
+                alert('KUNCI ENKRIPSI sudah terdaftar.');
                 return;
             }
 
@@ -1148,23 +1274,52 @@
                 const isSolved = currentUser.solvedChallenges.includes(challenge.id);
                 const challengeElement = document.createElement('div');
                 challengeElement.className = 'challenge-item';
-                challengeElement.innerHTML = `
-                    <div class="challenge-header">
-                        <div class="challenge-title">${challenge.name}</div>
-                        <div class="challenge-meta">
-                            <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
-                            <span>${challenge.points} pts</span>
-                            <span style="color: ${isSolved ? '#00ff41' : '#ff0033'}">${isSolved ? 'COMPROMISED' : 'LOCKED'}</span>
+                
+                if (challenge.hasQR) {
+                    challengeElement.innerHTML = `
+                        <div class="challenge-header">
+                            <div class="challenge-title">${challenge.name}</div>
+                            <div class="challenge-meta">
+                                <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
+                                <span>${challenge.points} pts</span>
+                                <span style="color: ${isSolved ? '#00ff41' : '#ff0033'}">${isSolved ? 'BERHASIL' : 'TERKUNCI'}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="challenge-description">${challenge.description}</div>
-                    ${isSolved ? 
-                        '<span style="color: #00ff41;">✓ FLAG CAPTURED: ' + challenge.flag + '</span>' :
-                        '<a href="' + challenge.path + '" class="challenge-link">>> START MISSION</a>'
-                    }
-                `;
+                        <div class="challenge-description">${challenge.description}</div>
+                        ${isSolved ? 
+                            '<span style="color: #00ff41;">✓ FLAG DITEMUKAN: ' + challenge.flag + '</span>' :
+                            `<div class="qr-container">
+                                <div class="qr-code" id="dashboard-qr-${challenge.id}"></div>
+                                <div>
+                                    <input type="text" class="flag-input" id="dashboard-flag-input-${challenge.id}" placeholder="Masukkan flag WSG{...}">
+                                    <button class="btn btn-primary" onclick="submitFlag(${challenge.id})">Submit Flag</button>
+                                </div>
+                                <div id="dashboard-result-${challenge.id}"></div>
+                            </div>`
+                        }
+                    `;
+                } else {
+                    challengeElement.innerHTML = `
+                        <div class="challenge-header">
+                            <div class="challenge-title">${challenge.name}</div>
+                            <div class="challenge-meta">
+                                <span class="challenge-difficulty difficulty-${challenge.difficulty}">${challenge.difficulty.toUpperCase()}</span>
+                                <span>${challenge.points} pts</span>
+                                <span style="color: ${isSolved ? '#00ff41' : '#ff0033'}">${isSolved ? 'BERHASIL' : 'TERKUNCI'}</span>
+                            </div>
+                        </div>
+                        <div class="challenge-description">${challenge.description}</div>
+                        ${isSolved ? 
+                            '<span style="color: #00ff41;">✓ FLAG DITEMUKAN: ' + challenge.flag + '</span>' :
+                            '<a href="' + challenge.path + '" class="challenge-link">>> MULAI MISI</a>'
+                        }
+                    `;
+                }
                 dashboardChallenges.appendChild(challengeElement);
             });
+
+            // Generate QR Code for dashboard
+            generateQRCode(1, "WSG{qr_c0d3_1s_fun}");
         }
 
         function updateScoreboard() {
@@ -1207,7 +1362,7 @@
                 currentUser = users[userIndex];
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 
-                alert('PROFILE UPDATED SUCCESSFULLY');
+                alert('PROFIL BERHASIL DIPERBARUI');
             }
         }
 
