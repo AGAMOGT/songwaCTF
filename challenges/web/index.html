@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Exploitation - songwaCTF</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/challenges.css">
+</head>
+<body>
+    <div id="matrix-bg"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="../../index.html" class="logo">songwaCTF</a>
+                <div class="nav-links">
+                    <a href="../index.html">[ALL CHALLENGES]</a>
+                    <a href="../../dashboard.html">[DASHBOARD]</a>
+                </div>
+                <div class="auth-buttons">
+                    <span id="user-welcome" style="color: var(--text-primary);"></span>
+                    <button class="btn btn-outline" onclick="logout()">LOGOUT</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">WEB EXPLOITATION</h2>
+            
+            <div class="challenges-list">
+                <div class="challenge-card completed">
+                    <div class="challenge-header">
+                        <h3>SQL Injection Basics</h3>
+                        <span class="difficulty difficulty-easy">ROOKIE</span>
+                    </div>
+                    <p>Learn the fundamentals of SQL injection attacks and bypass authentication.</p>
+                    <div class="challenge-meta">
+                        <span class="points">50 points</span>
+                        <span class="solves">✓ 42 solves</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="viewChallenge('sql-injection')">VIEW CHALLENGE</button>
+                </div>
+
+                <div class="challenge-card available">
+                    <div class="challenge-header">
+                        <h3>XSS Payload</h3>
+                        <span class="difficulty difficulty-medium">OPERATIVE</span>
+                    </div>
+                    <p>Execute cross-site scripting attacks and steal sensitive information.</p>
+                    <div class="challenge-meta">
+                        <span class="points">100 points</span>
+                        <span class="solves">● 28 solves</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="viewChallenge('xss-challenge')">VIEW CHALLENGE</button>
+                </div>
+
+                <div class="challenge-card locked">
+                    <div class="challenge-header">
+                        <h3>File Upload Bypass</h3>
+                        <span class="difficulty difficulty-hard">ELITE</span>
+                    </div>
+                    <p>Bypass file upload restrictions and execute remote code.</p>
+                    <div class="challenge-meta">
+                        <span class="points">200 points</span>
+                        <span class="solves">✗ 15 solves</span>
+                    </div>
+                    <button class="btn btn-outline" disabled>LOCKED</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../assets/js/challenges.js"></script>
+</body>
+</html>
